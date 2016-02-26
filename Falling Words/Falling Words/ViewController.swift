@@ -27,7 +27,16 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    @IBAction func correctTapped(sender: AnyObject)
+    {
+        self.game?.playerSaidCorrect()
+    }
+    
+    @IBAction func incorrectTapped(sender: AnyObject)
+    {
+        self.game?.playerSaidIncorrect()
+    }
 
 }
 
