@@ -14,6 +14,10 @@ class WordFallingGame: NSObject {
     var fallingWordLabel: UILabel
     var targetTranslation: [String: String]
     
+    var didWin: Bool
+    {
+        return false
+    }
     
     init(gameView: UIView, andControlView controlView: ControlView)
     {
@@ -38,11 +42,17 @@ class WordFallingGame: NSObject {
     
     func dropAWord()
     {
+        self.fallingWordLabel.frame = CGRect(x: 300, y: 50, width: 300, height: 50)
+        
         self.fallingWordLabel.text = self.selectRandomForeign()
-        UIView.animateWithDuration(3, animations: { () -> Void in
-            self.fallingWordLabel.center.y = self.controlView.center.y+self.fallingWordLabel.frame.height
+        UIView.animateWithDuration(2, delay: 0, options: .CurveLinear, animations: { () -> Void in
+            self.fallingWordLabel.frame.origin.y = self.controlView.frame.minY - (self.fallingWordLabel.frame.height/2)
+            
             }) { (_) -> Void in
-                
+                if !self.didWin
+                {
+                    self.dropAWord()
+                }
         }
     }
     
