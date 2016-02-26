@@ -13,6 +13,8 @@ class WordFallingGame: NSObject {
     var controlView: ControlView
     var fallingWordLabel: UILabel
     var targetTranslation: [String: String]
+    var targetTranslationIndex = 0
+    var translationsBool: [[String: String]]
     
     var didWin: Bool
     {
@@ -27,17 +29,46 @@ class WordFallingGame: NSObject {
         self.fallingWordLabel.text = "A Falling Word!"
         self.gameView.addSubview(self.fallingWordLabel)
         self.targetTranslation = [String: String]()
+        self.translationsBool = [[String: String]]()
+        super.init()
+        if let theTranslations = self.loadTranslationsFromJSON()
+        {
+            self.translationsBool = theTranslations
+        }
+        else
+        {
+            NSLog("Failed to load translations")
+        }
+    }
+    
+    func loadTranslationsFromJSON() -> [[String: String]]?
+    {
+        if let path = NSBundle.mainBundle().pathForResource("words", ofType: "json")
+        {
+            if let jsonData = try? NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe)
+            {
+                let jsonResult = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as? [[String: String]]
+                if let theJsonResult = jsonResult
+                {
+                    return theJsonResult
+                }
+            }
+        }
+        return nil
+        
     }
     
     func startNewGame()
     {
         self.targetTranslation = self.selectRandomTranslation()
+        self.controlView.wordLabel?.text = self.targetTranslation["text_eng"]
         self.dropAWord()
     }
     
     func selectRandomTranslation() -> [String: String]
     {
-        return ["original": "Hello", "translation": "Hallo"]
+        self.targetTranslationIndex = Int(arc4random_uniform( UInt32(self.translationsBool.count) ))
+        return self.translationsBool[self.targetTranslationIndex]
     }
     
     func dropAWord()
@@ -56,8 +87,9 @@ class WordFallingGame: NSObject {
         }
     }
     
-    func selectRandomForeign() -> String
+    func selectRandomForeign() -> String?
     {
-        return "Holla"
+        let randomIndex = Int(arc4random_uniform( UInt32(self.translationsBool.count) ))
+        return self.translationsBool[randomIndex]["text_spa"]
     }
 }
