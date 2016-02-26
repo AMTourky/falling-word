@@ -12,6 +12,7 @@
 		EBE69F801C80189D0072176B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE69F7E1C80189D0072176B /* Main.storyboard */; };
 		EBE69F821C80189D0072176B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBE69F811C80189D0072176B /* Assets.xcassets */; };
 		EBE69F851C80189D0072176B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE69F831C80189D0072176B /* LaunchScreen.storyboard */; };
+		EBE69F921C801B7A0072176B /* correct.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBE69F911C801B7A0072176B /* correct.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		EBE69F811C80189D0072176B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBE69F841C80189D0072176B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EBE69F861C80189D0072176B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBE69F911C801B7A0072176B /* correct.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = correct.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		EBE69F791C80189D0072176B /* Falling Words */ = {
 			isa = PBXGroup;
 			children = (
+				EBE69F8C1C8019660072176B /* Resources */,
 				EBE69F7A1C80189D0072176B /* AppDelegate.swift */,
 				EBE69F7C1C80189D0072176B /* ViewController.swift */,
 				EBE69F7E1C80189D0072176B /* Main.storyboard */,
@@ -62,6 +65,14 @@
 				EBE69F861C80189D0072176B /* Info.plist */,
 			);
 			path = "Falling Words";
+			sourceTree = "<group>";
+		};
+		EBE69F8C1C8019660072176B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EBE69F911C801B7A0072176B /* correct.xcassets */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +135,7 @@
 			files = (
 				EBE69F851C80189D0072176B /* LaunchScreen.storyboard in Resources */,
 				EBE69F821C80189D0072176B /* Assets.xcassets in Resources */,
+				EBE69F921C801B7A0072176B /* correct.xcassets in Resources */,
 				EBE69F801C80189D0072176B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
