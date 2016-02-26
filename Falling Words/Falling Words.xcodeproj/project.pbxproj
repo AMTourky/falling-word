@@ -13,6 +13,8 @@
 		EBE69F821C80189D0072176B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBE69F811C80189D0072176B /* Assets.xcassets */; };
 		EBE69F851C80189D0072176B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE69F831C80189D0072176B /* LaunchScreen.storyboard */; };
 		EBE69F921C801B7A0072176B /* correct.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBE69F911C801B7A0072176B /* correct.xcassets */; };
+		EBE69F941C8023320072176B /* WordFallingGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69F931C8023320072176B /* WordFallingGame.swift */; };
+		EBE69F961C8024080072176B /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69F951C8024080072176B /* ControlView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		EBE69F841C80189D0072176B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EBE69F861C80189D0072176B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBE69F911C801B7A0072176B /* correct.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = correct.xcassets; sourceTree = "<group>"; };
+		EBE69F931C8023320072176B /* WordFallingGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordFallingGame.swift; sourceTree = "<group>"; };
+		EBE69F951C8024080072176B /* ControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				EBE69F811C80189D0072176B /* Assets.xcassets */,
 				EBE69F831C80189D0072176B /* LaunchScreen.storyboard */,
 				EBE69F861C80189D0072176B /* Info.plist */,
+				EBE69F931C8023320072176B /* WordFallingGame.swift */,
+				EBE69F951C8024080072176B /* ControlView.swift */,
 			);
 			path = "Falling Words";
 			sourceTree = "<group>";
@@ -147,8 +153,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBE69F961C8024080072176B /* ControlView.swift in Sources */,
 				EBE69F7D1C80189D0072176B /* ViewController.swift in Sources */,
 				EBE69F7B1C80189D0072176B /* AppDelegate.swift in Sources */,
+				EBE69F941C8023320072176B /* WordFallingGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

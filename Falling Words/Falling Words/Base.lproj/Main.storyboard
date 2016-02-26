@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rT8-cH-wSt">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rT8-cH-wSt" customClass="ControlView" customModule="Falling_Words" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="569" width="414" height="167"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="center" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xsQ-Up-K6c">
@@ -58,6 +58,9 @@
                                     <constraint firstItem="b6q-yO-GLx" firstAttribute="leading" secondItem="VUz-XA-tX4" secondAttribute="trailing" constant="-12" id="bTc-FK-SRA"/>
                                     <constraint firstItem="b6q-yO-GLx" firstAttribute="leading" secondItem="VUz-XA-tX4" secondAttribute="trailing" constant="8" id="z8C-lv-Gjz"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="wordLabel" destination="VUz-XA-tX4" id="yFp-Sf-g3B"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -68,6 +71,9 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="controlView" destination="rT8-cH-wSt" id="q9Q-AH-EeO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
