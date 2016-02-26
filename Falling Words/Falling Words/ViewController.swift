@@ -12,12 +12,13 @@ class ViewController: UIViewController {
     
     var game: WordFallingGame?
     @IBOutlet var controlView: ControlView?
+    @IBOutlet var scoreboard: ScoreBoardView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let theView = self.view, theControlView = self.controlView
+        if let theView = self.view, theControlView = self.controlView, theScoreboard = self.scoreboard
         {
-            self.game = WordFallingGame(gameView: theView, andControlView: theControlView)
+            self.game = WordFallingGame(gameView: theView, andScoreboard: theScoreboard, andControlView: theControlView)
             self.game?.startNewGame()
         }
         // Do any additional setup after loading the view, typically from a nib.

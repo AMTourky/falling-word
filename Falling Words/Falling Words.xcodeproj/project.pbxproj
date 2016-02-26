@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB84FA711C807E33005FF65B /* ScoreBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB84FA701C807E33005FF65B /* ScoreBoardView.swift */; };
 		EBE69F7B1C80189D0072176B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69F7A1C80189D0072176B /* AppDelegate.swift */; };
 		EBE69F7D1C80189D0072176B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69F7C1C80189D0072176B /* ViewController.swift */; };
 		EBE69F801C80189D0072176B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE69F7E1C80189D0072176B /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB84FA701C807E33005FF65B /* ScoreBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBoardView.swift; sourceTree = "<group>"; };
 		EBE69F771C80189D0072176B /* Falling Words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Falling Words.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBE69F7A1C80189D0072176B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBE69F7C1C80189D0072176B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				EBE69F861C80189D0072176B /* Info.plist */,
 				EBE69F931C8023320072176B /* WordFallingGame.swift */,
 				EBE69F951C8024080072176B /* ControlView.swift */,
+				EB84FA701C807E33005FF65B /* ScoreBoardView.swift */,
 			);
 			path = "Falling Words";
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			files = (
 				EBE69F961C8024080072176B /* ControlView.swift in Sources */,
 				EBE69F7D1C80189D0072176B /* ViewController.swift in Sources */,
+				EB84FA711C807E33005FF65B /* ScoreBoardView.swift in Sources */,
 				EBE69F7B1C80189D0072176B /* AppDelegate.swift in Sources */,
 				EBE69F941C8023320072176B /* WordFallingGame.swift in Sources */,
 			);
@@ -310,6 +314,7 @@
 				EBE69F8B1C80189D0072176B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

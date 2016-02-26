@@ -19,6 +19,7 @@ class WordFallingGame: NSObject {
     
     var gameView: UIView
     var controlView: ControlView
+    var scoreboard: ScoreBoardView
     var fallingWordLabel: UILabel
     var targetTranslation: [String: String]
     var targetTranslationIndex = 0
@@ -39,10 +40,11 @@ class WordFallingGame: NSObject {
         return self.fallingWordLabel.text == self.targetTranslation["text_spa"]
     }
     
-    init(gameView: UIView, andControlView controlView: ControlView)
+    init(gameView: UIView, andScoreboard scoreboard : ScoreBoardView, andControlView controlView: ControlView)
     {
         self.gameView = gameView
         self.controlView = controlView
+        self.scoreboard = scoreboard
         self.fallingWordLabel = UILabel(frame: WordFallingGame.initialFrameOfFallingWord)
         self.fallingWordLabel.textAlignment = .Center
         self.gameView.addSubview(self.fallingWordLabel)
@@ -115,9 +117,11 @@ class WordFallingGame: NSObject {
         if self.failingWordIsCorrect
         {
             print("Great")
+            self.scoreboard.incrementScore()
         }
         else
         {
+            self.scoreboard.decrementScore()
             print("It's the wrong word!")
         }
     }
@@ -126,10 +130,12 @@ class WordFallingGame: NSObject {
     {
         if !self.failingWordIsCorrect
         {
+            self.scoreboard.incrementScore()
             print("You are right, it was wrong")
         }
         else
         {
+            self.scoreboard.decrementScore()
             print("ops, it was it!")
         }
     }
