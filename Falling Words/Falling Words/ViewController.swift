@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         if let theView = self.view, theControlView = self.controlView
         {
             self.game = WordFallingGame(gameView: theView, andControlView: theControlView)
+            self.game?.startNewGame()
         }
         // Do any additional setup after loading the view, typically from a nib.
     }
