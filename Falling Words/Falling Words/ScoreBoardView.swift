@@ -11,9 +11,10 @@ import UIKit
 class ScoreBoardView: UIView {
 
     static var maxScore = 2000
+    static var startScore = 1000
     var scoreStep = 100
     
-    private var score: Int = 1000
+    private var score: Int = ScoreBoardView.startScore
     {
         didSet
         {
@@ -34,19 +35,73 @@ class ScoreBoardView: UIView {
     
     func resetScore()
     {
-        self.score = 0
+        self.score = ScoreBoardView.startScore
     }
     
     func incrementScore()
     {
-        self.score += self.inceremntStep
+        self.score += self.scoreStep
+        self.happyScore()
+    }
+    
+    private func happyScore()
+    {
+        // change color to red
+        UIView.transitionWithView(self.scoreLabel!, duration: 0.5, options: .TransitionCrossDissolve, animations: { () -> Void in
+            
+            self.scoreLabel?.textColor = UIColor.greenColor()
+            
+            }) { (_) -> Void in }
+        
+        UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseIn, animations: { () -> Void in
+            // make the score bigger
+            self.scoreLabel?.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.8, 1.8)
+            
+            }) { (_) -> Void in }
+        UIView.animateWithDuration(0.5, delay: 0.5, options: .CurveEaseOut, animations: { () -> Void in
+            // back the score to the normal size
+            self.scoreLabel?.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1)
+            
+            }) { (_) -> Void in
+                // change color back to black
+                UIView.transitionWithView(self.scoreLabel!, duration: 0.5, options: .TransitionCrossDissolve, animations: { () -> Void in
+                    
+                    self.scoreLabel?.textColor = UIColor.blackColor()
+                    
+                    }) { (_) -> Void in }
+        }
     }
     
     func decrementScore()
     {
-        if self.score >= self.inceremntStep
+        if self.score >= self.scoreStep
         {
-            self.score -= self.inceremntStep
+            self.score -= self.scoreStep
+            self.sadScore()
+        }
+    }
+    
+    private func sadScore()
+    {
+        UIView.transitionWithView(self.scoreLabel!, duration: 0.5, options: .TransitionCrossDissolve, animations: { () -> Void in
+            self.scoreLabel?.textColor = UIColor.redColor()
+            }) { (_) -> Void in }
+        
+        UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseIn, animations: { () -> Void in
+            
+            self.scoreLabel?.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.3, 0.3)
+            
+            }) { (_) -> Void in }
+        UIView.animateWithDuration(0.5, delay: 0.5, options: .CurveEaseOut, animations: { () -> Void in
+            
+            self.scoreLabel?.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1)
+            
+            }) { (_) -> Void in
+                UIView.transitionWithView(self.scoreLabel!, duration: 0.5, options: .TransitionCrossDissolve, animations: { () -> Void in
+                    
+                    self.scoreLabel?.textColor = UIColor.blackColor()
+                    
+                    }) { (_) -> Void in }
         }
     }
 }
