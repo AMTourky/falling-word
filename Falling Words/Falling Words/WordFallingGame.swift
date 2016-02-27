@@ -116,6 +116,7 @@ class WordFallingGame: NSObject {
     
     func dropAWord()
     {
+        self.controlView.enableInteraction()
         self.roundCounter++
         if self.roundCounter % WordFallingGame.roundLength == 0
         {
@@ -153,6 +154,7 @@ class WordFallingGame: NSObject {
     
     func playerSaidCorrect()
     {
+        self.controlView.disableInteraction()
         if self.failingWordIsCorrect
         {
             self.scoreboard.incrementScore()
@@ -168,6 +170,7 @@ class WordFallingGame: NSObject {
     
     func playerSaidIncorrect()
     {
+        self.controlView.disableInteraction()
         if !self.failingWordIsCorrect
         {
             self.scoreboard.incrementScore()

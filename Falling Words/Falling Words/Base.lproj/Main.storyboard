@@ -56,6 +56,8 @@
                                     <constraint firstItem="VUz-XA-tX4" firstAttribute="top" secondItem="rT8-cH-wSt" secondAttribute="top" constant="5" id="y4m-1w-As2"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="correctButton" destination="b6q-yO-GLx" id="yRM-HD-X78"/>
+                                    <outlet property="incorrectButton" destination="xsQ-Up-K6c" id="Wk0-qr-BGd"/>
                                     <outlet property="wordLabel" destination="VUz-XA-tX4" id="yFp-Sf-g3B"/>
                                 </connections>
                             </view>
@@ -69,7 +71,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="scoreLabel" destination="d0V-wn-opV" id="PJ2-o9-hp1"/>
                                 </connections>
