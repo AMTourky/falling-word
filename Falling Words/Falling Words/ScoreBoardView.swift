@@ -10,26 +10,28 @@ import UIKit
 
 class ScoreBoardView: UIView {
 
-    var inceremntStep = 100
-    var _score: Int = 0
-    var score: Int
+    static var maxScore = 2000
+    var scoreStep = 100
+    
+    private var score: Int = 1000
     {
-        get
+        didSet
         {
-            return self._score
-        }
-        set
-        {
-            self._score = newValue
-            self.scoreLabel?.text = String(newValue)
+            self.scoreLabel?.text = String(self.score)
         }
     }
     @IBOutlet var scoreLabel: UILabel?
     
-    override func didMoveToSuperview()
+    var reachedMaxScore: Bool
     {
-        
+        return self.score == ScoreBoardView.maxScore
     }
+    
+    var reachedZeroScore: Bool
+    {
+        return self.score <= 0
+    }
+    
     func resetScore()
     {
         self.score = 0
