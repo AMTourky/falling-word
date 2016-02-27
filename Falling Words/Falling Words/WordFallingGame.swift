@@ -108,6 +108,7 @@ class WordFallingGame: NSObject {
         {
             self.scoreboard.decrementScore()
         }
+        self.playerDidGiveCorrectAnswer = false
         self.visitedIndices = [Int]()
         self.targetTranslationIndex = Int(arc4random_uniform( UInt32(self.translationsBool.count) ))
         return self.translationsBool[self.targetTranslationIndex]
