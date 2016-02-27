@@ -31,6 +31,7 @@ class WordFallingGame: NSObject {
     var targetTranslationIndex = 0
     var translationsBool: [[String: String]]
     var roundCounter = 0
+    var visitedIndices = [Int]()
     
     
     var canContinueDropping: Bool
@@ -93,6 +94,7 @@ class WordFallingGame: NSObject {
     
     func startNewGame()
     {
+        self.scoreboard.resetScore()
         self.roundCounter = 0
         self.targetTranslation = self.selectRandomTranslation()
         self.dropAWord()
@@ -100,6 +102,7 @@ class WordFallingGame: NSObject {
     
     func selectRandomTranslation() -> [String: String]
     {
+        self.visitedIndices = [Int]()
         self.targetTranslationIndex = Int(arc4random_uniform( UInt32(self.translationsBool.count) ))
         return self.translationsBool[self.targetTranslationIndex]
     }
@@ -113,7 +116,7 @@ class WordFallingGame: NSObject {
         }
         self.fallingWordLabel.frame = WordFallingGame.initialFrameOfFallingWord
         self.fallingWordLabel.text = self.selectRandomForeign()
-        UIView.animateWithDuration(4, delay: 0, options: .CurveLinear, animations: { () -> Void in
+        UIView.animateWithDuration(3, delay: 0, options: .CurveLinear, animations: { () -> Void in
             
             self.fallingWordLabel.frame.origin.y = self.controlView.frame.minY - (self.fallingWordLabel.frame.height/2)
             }) { (_) -> Void in
@@ -136,7 +139,8 @@ class WordFallingGame: NSObject {
         {
             randomIndex = minimum + Int(arc4random_uniform( UInt32( 4 ) ))
         }
-        while(randomIndex >= self.translationsBool.count)
+        while( randomIndex >= self.translationsBool.count || randomIndex < 0 || self.visitedIndices.indexOf(randomIndex) != nil)
+        self.visitedIndices.append(randomIndex)
         return self.translationsBool[randomIndex]["text_spa"]
     }
     
@@ -144,14 +148,12 @@ class WordFallingGame: NSObject {
     {
         if self.failingWordIsCorrect
         {
-            print("Great")
             self.scoreboard.incrementScore()
             self.targetTranslation = self.selectRandomTranslation()
         }
         else
         {
             self.scoreboard.decrementScore()
-            print("It's the wrong word!")
         }
         self.checkWinOrLose()
     }
@@ -161,12 +163,10 @@ class WordFallingGame: NSObject {
         if !self.failingWordIsCorrect
         {
             self.scoreboard.incrementScore()
-            print("You are right, it was wrong")
         }
         else
         {
             self.scoreboard.decrementScore()
-            print("ops, it was it!")
         }
         self.checkWinOrLose()
     }
