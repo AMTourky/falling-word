@@ -19,9 +19,14 @@ class ViewController: UIViewController {
         if let theView = self.view, theControlView = self.controlView, theScoreboard = self.scoreboard
         {
             self.game = WordFallingGame(gameView: theView, andScoreboard: theScoreboard, andControlView: theControlView)
-            self.game?.startNewGame()
         }
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        self.game?.displayAlert(withTitle: "Welcome")
     }
 
     override func didReceiveMemoryWarning() {

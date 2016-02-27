@@ -11,28 +11,41 @@ import UIKit
 class WordFallingGame: NSObject {
     
     static var screenBounds = UIScreen.mainScreen().bounds
-    
     static var initialFrameOfFallingWord: CGRect
     {
         return CGRect(x: 0, y: 0, width: WordFallingGame.screenBounds.width, height: 50)
     }
+    static var roundLength = 4
     
     var gameView: UIView
     var controlView: ControlView
     var scoreboard: ScoreBoardView
     var fallingWordLabel: UILabel
     var targetTranslation: [String: String]
+    {
+        didSet
+        {
+            self.controlView.wordLabel?.text = self.targetTranslation["text_eng"]
+        }
+    }
     var targetTranslationIndex = 0
     var translationsBool: [[String: String]]
+    var roundCounter = 0
+    
     
     var canContinueDropping: Bool
     {
-        return !self.didWin
+        return !self.didWin && !self.didLose
     }
     
     var didWin: Bool
     {
-        return false
+        return self.scoreboard.reachedMaxScore
+    }
+    
+    var didLose: Bool
+    {
+        return self.scoreboard.reachedZeroScore
     }
     
     var failingWordIsCorrect: Bool
@@ -80,8 +93,8 @@ class WordFallingGame: NSObject {
     
     func startNewGame()
     {
+        self.roundCounter = 0
         self.targetTranslation = self.selectRandomTranslation()
-        self.controlView.wordLabel?.text = self.targetTranslation["text_eng"]
         self.dropAWord()
     }
     
@@ -93,9 +106,14 @@ class WordFallingGame: NSObject {
     
     func dropAWord()
     {
+        self.roundCounter++
+        if self.roundCounter % WordFallingGame.roundLength == 0
+        {
+            self.targetTranslation = self.selectRandomTranslation()
+        }
         self.fallingWordLabel.frame = WordFallingGame.initialFrameOfFallingWord
         self.fallingWordLabel.text = self.selectRandomForeign()
-        UIView.animateWithDuration(2, delay: 0, options: .CurveLinear, animations: { () -> Void in
+        UIView.animateWithDuration(4, delay: 0, options: .CurveLinear, animations: { () -> Void in
             
             self.fallingWordLabel.frame.origin.y = self.controlView.frame.minY - (self.fallingWordLabel.frame.height/2)
             }) { (_) -> Void in
@@ -103,12 +121,22 @@ class WordFallingGame: NSObject {
                 {
                     self.dropAWord()
                 }
+                else
+                {
+                    self.checkWinOrLose()
+                }
         }
     }
     
     func selectRandomForeign() -> String?
     {
-        let randomIndex = Int(arc4random_uniform( UInt32(self.translationsBool.count) ))
+        let minimum = self.targetTranslationIndex-2
+        var randomIndex = 0
+        repeat
+        {
+            randomIndex = minimum + Int(arc4random_uniform( UInt32( 4 ) ))
+        }
+        while(randomIndex >= self.translationsBool.count)
         return self.translationsBool[randomIndex]["text_spa"]
     }
     
@@ -118,12 +146,14 @@ class WordFallingGame: NSObject {
         {
             print("Great")
             self.scoreboard.incrementScore()
+            self.targetTranslation = self.selectRandomTranslation()
         }
         else
         {
             self.scoreboard.decrementScore()
             print("It's the wrong word!")
         }
+        self.checkWinOrLose()
     }
     
     func playerSaidIncorrect()
@@ -138,5 +168,43 @@ class WordFallingGame: NSObject {
             self.scoreboard.decrementScore()
             print("ops, it was it!")
         }
+        self.checkWinOrLose()
     }
+    
+    private func checkWinOrLose()
+    {
+        if self.didWin
+        {
+            self.gameSuccess()
+        }
+        else if self.didLose
+        {
+            self.gameOver()
+        }
+    }
+    
+    private func gameSuccess()
+    {
+        print("YOU WIN :)")
+        self.displayAlert(withTitle: "YOU WIN :)")
+    }
+    
+    private func gameOver()
+    {
+        print("YOU LOSE! ;(")
+        self.displayAlert(withTitle: "YOU LOSE! ;(")
+    }
+    
+    func displayAlert(withTitle title: String)
+    {
+        let alertController = UIAlertController(title: title, message: "Looking fore a challenge?", preferredStyle: .Alert)
+        
+        let playAction = UIAlertAction(title: "New Game", style: .Default)
+            { (action) in
+                self.startNewGame()
+        }
+        alertController.addAction(playAction)
+        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
 }
