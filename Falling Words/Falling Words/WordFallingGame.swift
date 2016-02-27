@@ -159,7 +159,7 @@ class WordFallingGame: NSObject {
         {
             self.scoreboard.incrementScore()
             self.playerDidGiveCorrectAnswer = true
-            self.targetTranslation = self.selectRandomTranslation()
+            self.roundCounter = WordFallingGame.roundLength-1
         }
         else
         {
