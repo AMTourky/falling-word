@@ -32,6 +32,7 @@ class WordFallingGame: NSObject {
     var translationsBool: [[String: String]]
     var roundCounter = 0
     var visitedIndices = [Int]()
+    var playerDidGiveCorrectAnswer = false
     
     
     var canContinueDropping: Bool
@@ -94,14 +95,19 @@ class WordFallingGame: NSObject {
     
     func startNewGame()
     {
+        self.playerDidGiveCorrectAnswer = false
         self.scoreboard.resetScore()
         self.roundCounter = 0
-        self.targetTranslation = self.selectRandomTranslation()
+        self.targetTranslation = self.selectRandomTranslation(isFirstRound: true)
         self.dropAWord()
     }
     
-    func selectRandomTranslation() -> [String: String]
+    func selectRandomTranslation(isFirstRound firstRound: Bool = false) -> [String: String]
     {
+        if !firstRound && !self.playerDidGiveCorrectAnswer
+        {
+            self.scoreboard.decrementScore()
+        }
         self.visitedIndices = [Int]()
         self.targetTranslationIndex = Int(arc4random_uniform( UInt32(self.translationsBool.count) ))
         return self.translationsBool[self.targetTranslationIndex]
@@ -149,6 +155,7 @@ class WordFallingGame: NSObject {
         if self.failingWordIsCorrect
         {
             self.scoreboard.incrementScore()
+            self.playerDidGiveCorrectAnswer = true
             self.targetTranslation = self.selectRandomTranslation()
         }
         else
